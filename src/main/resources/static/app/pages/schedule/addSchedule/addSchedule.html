@@ -1,0 +1,126 @@
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Schedule Wizard" ba-panel-class="with-scroll">
+                <ba-wizard>
+                    <ba-wizard-step title="Schedule info" form="vm.personalInfoForm">
+                        <form name="vm.personalInfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.personalInfoForm.scheduleName.$invalid && (vm.personalInfoForm.scheduleName.$dirty || vm.personalInfoForm.$submitted)}">
+                                        <label for="scheduleName">Schedule Name</label>
+                                        <input type="text" class="form-control" id="scheduleName" name="scheduleName"
+                                               placeholder="Schedule Name" ng-model="vm.scheduleName" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-8">
+
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': !vm.isChkValid() && (vm.personalInfoForm.$submitted)}">
+                                        <span>Schedule Repeat</span>
+                                        <div ng-repeat="c in vm.listDays">
+                                            <div class="col-md-4">
+                                                <label class="checkbox-inline custom-checkbox nowrap">
+                                                    <input type="checkbox" class="form-control"
+                                                           ng-model="c.Value" ng-required="vm.chosenDays.length == 0">
+                                                    <span>{{c.Name}}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <span class="help-block error-block basic-block">Required at least one</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="Product Info" form="vm.productInfoForm">
+                        <form name="vm.productInfoForm" novalidate>
+                            <div class="row">
+                                <div class="form-group has-feedback"
+                                     ng-class="{'has-error': !vm.isChkValid() && (vm.personalInfoForm.$submitted)}">
+
+                                    <div ng-repeat="c in vm.listDays|filter:{Value:true}" >
+                                        <div>
+                                            <div class="slider-box">
+                                                <h5>{{c.Name}}</h5>
+                                                <ion-slider type="double"
+                                                            grid="true"
+                                                            min="0"
+                                                            max ="86340"
+                                                            from= "c.From"
+                                                            to  = "c.To"
+                                                            step="60"
+                                                            mininterval=60
+                                                            istime="true"
+
+                                                            disable="false"
+                                                            >
+                                                </ion-slider>
+                                                <p>{{c.From}}-{{c.To}}</p>
+                                            </div>
+                                            <!--onChange=vm.saveValues(data)-->
+                                            <!-- from= "57600"
+                                                            to  = "64800"-->
+                                            <!--<label class="checkbox-inline custom-checkbox nowrap">-->
+                                                <!--<input type="checkbox" class="form-control"-->
+                                                       <!--ng-model="vm.chosenDays[c.Name]" ng-required="vm.chosenDays.length == 0">-->
+                                                <!--<span>{{c.Name}}</span>-->
+                                            <!--</label>-->
+                                        </div>
+                                    </div>
+
+                                    <span class="help-block error-block basic-block">Required at least one</span>
+                                </div>
+                                <div class="col-md-6">
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="Shipment" form="vm.addressForm">
+                        <form name="vm.addressForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.addressForm.address.$invalid && (vm.addressForm.address.$dirty || vm.addressForm.$submitted)}">
+                                        <label for="address">Shipment address</label>
+                                        <input type="text" class="form-control" id="address" name="address"
+                                               placeholder="Shipment address" ng-model="vm.shipment.address" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!--<label for="productName">Shipment method</label>-->
+                                        <select class="form-control" title="Category" selectpicker>
+                                            <option selected>Fast & expensive</option>
+                                            <option>Cheap & free</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox">
+                                    <span>Save shipment info</span>
+                                </label>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="Finish">
+                        <form class="form-horizontal" name="vm.finishForm" novalidate>
+                            Congratulations! You have successfully filled the form!
+                        </form>
+                    </ba-wizard-step>
+                </ba-wizard>
+            </div>
+        </div>
+    </div>
+
+</div>

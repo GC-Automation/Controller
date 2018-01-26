@@ -31,7 +31,7 @@
           title: 'Units',
           sidebarMeta: {
             icon: 'ion-cube',
-            order: 200,
+            order: 501,
           },
         });
   }

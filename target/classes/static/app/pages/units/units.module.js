@@ -28,10 +28,10 @@
           url: '/units',
           template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
           abstract: true,
-          title: 'units',
+          title: 'Units',
           sidebarMeta: {
             icon: 'ion-cube',
-            order: 200,
+            order: 501,
           },
         });
   }
