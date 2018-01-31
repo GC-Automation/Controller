@@ -14,6 +14,8 @@
         .state('units.newunit', {
           url: '/newunit',
           templateUrl: 'app/pages/units/newunit/newunit.html',
+            controller: 'newunitCtrl',
+            controllerAs: 'vm',
           title: 'New units',
           sidebarMeta: {
             order: 500,

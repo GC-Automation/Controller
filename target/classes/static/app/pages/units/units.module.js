@@ -6,7 +6,8 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.units', [
-      'BlurAdmin.pages.units.newunit'
+      'BlurAdmin.pages.units.newunit',
+      'BlurAdmin.pages.units.listUnit'
     // 'BlurAdmin.pages.ui.typography',
     // 'BlurAdmin.pages.ui.buttons',
     // 'BlurAdmin.pages.ui.icons',

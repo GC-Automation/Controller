@@ -1,4 +1,4 @@
-<div class="widgets">
+<div class="widgets" ng-controller="addScheduleCtrl as vm">
 
     <div class="row">
         <div class="col-md-12">
@@ -48,20 +48,22 @@
                                         <div>
                                             <div class="slider-box">
                                                 <h5>{{c.Name}}</h5>
-                                                <ion-slider type="double"
-                                                            grid="true"
-                                                            min="0"
-                                                            max ="86340"
-                                                            from= "c.From"
-                                                            to  = "c.To"
-                                                            step="60"
-                                                            mininterval=60
-                                                            istime="true"
-
-                                                            disable="false"
+                                                <ion-slider
+                                                        type="double"
+                                                        grid="true"
+                                                        min="0"
+                                                        max="86340"
+                                                        from="57600"
+                                                        to="64800"
+                                                        step="60"
+                                                        mininterval=60
+                                                        istime="true"
+                                                        onchange="vm.saveValues"
+                                                        ng-model="c.Range"
+                                                        disable="false"
                                                             >
                                                 </ion-slider>
-                                                <p>{{c.From}}-{{c.To}}</p>
+                                                <!--<p>{{c}}</p>-->
                                             </div>
                                             <!--onChange=vm.saveValues(data)-->
                                             <!-- from= "57600"

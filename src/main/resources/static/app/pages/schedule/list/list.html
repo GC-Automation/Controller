@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="widget">
+    <div ba-panel ba-panel-title="Schedules List" ba-panel-class="with-scroll table-panel">
+        <div class="horizontal-scroll">
+            <table class="table table-hover">
+                <thead>
+                <tr class="black-muted-bg">
 
-</body>
-</html>
+                    <th ng-class="align-left">Schedule Name</th>
+                    <th ng-class="align-left">Days</th>
+                    <th ng-class="align-left">Channels</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in vm.schedules" class="no-top-border" ng-click="vm.setClickedRow($event,item)">
+
+                    <td ng-class="align-left">{{item.ScheduleName}}</td>
+                    <td ng-class="align-left">{{vm.listDays(item.Schedule)}}</td>
+                    <td ng-class="align-left">{{vm.listDevices(item.devices)}}</td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

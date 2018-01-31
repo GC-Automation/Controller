@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DashboardController {
     // Here you set your context
 
-    @RequestMapping("/")
+    @RequestMapping("/dashboard")
     public String home() {
-        System.out.println("Index");
+        System.out.println("Dashboard");
 
         return "index";
     }
@@ -25,10 +25,5 @@ public class DashboardController {
 
         return "reg";
     }
-    @RequestMapping("/error/404")
-    public String error404() {
-        System.out.println("Error 404");
 
-        return "error404";
-    }
 }

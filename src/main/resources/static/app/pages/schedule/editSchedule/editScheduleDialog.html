@@ -1,0 +1,63 @@
+<md-dialog aria-label="Edit Schedule">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Schedule</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="libs/Ionicons/src/android-close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <label for="scheduleName">Schedule Name</label>
+
+                <input type="text" class="form-control" id="scheduleName" name="{{myIndex.ScheduleName}}"
+                       placeholder="Schedule Name" ng-model="myIndex.ScheduleName" ng-value="myIndex.ScheduleName">
+                <!--<div class="md-dialog-content" ng-repeat="schedule in thisIndex.Schedule" for="{{schedule}}">-->
+                <!--class="md-dialog-content"-->
+                <label class="col-md-6" ng-repeat="schedule in myIndex.Schedule">{{schedule.Name}}
+                    <input type="checkbox" ng-model="schedule.Value">
+                    <br>
+                    <label class="col-md-4" for="FromInput">From:
+                        <input type="text" ng-model="schedule.From" id="FromInput"></label>
+                    <label class="col-md-4" for="ToInput">To:
+                        <input type="text" ng-model="schedule.To" id="ToInput"></label>
+
+
+                </label>
+                <tags-input class="col-md-8" ng-model="myIndex.devices" display-property="name"
+                            placeholder="Add a Channel" replace-spaces-with-dashes="false">
+                    <auto-complete source="loadChannels($query)"
+                                   min-length="0"
+                                   load-on-focus="true"
+                                   load-on-empty="true"
+                                   max-results-to-show="32"
+                                   template="channel-template"></auto-complete>
+                </tags-input>
+                <!--col-md-4-->
+                <!--</div>-->
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="answer('Cancel')">
+                Cancel
+            </md-button>
+            <md-button ng-click="answer('Save')">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<script type="text/ng-template" id="channel-template">
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+        <span> - ({{data.id}})</span>
+        <span>{{data.unit}}</span>
+    </div>
+</script>

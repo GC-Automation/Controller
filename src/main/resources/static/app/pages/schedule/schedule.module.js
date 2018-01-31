@@ -5,9 +5,9 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.schedule', ['ui.select', 'ngSanitize'
-        // 'BlurAdmin.pages.schedule.addSchedule'
-        // 'BlurAdmin.pages.schedule.listSchedule'
+    angular.module('BlurAdmin.pages.schedule', ['ui.select', 'ngSanitize',
+        'BlurAdmin.pages.schedule.addSchedule',
+        'BlurAdmin.pages.schedule.list'
         // 'BlurAdmin.pages.ui.typography',
         // 'BlurAdmin.pages.ui.buttons',
         // 'BlurAdmin.pages.ui.icons',
@@ -34,17 +34,6 @@
                 sidebarMeta: {
                     icon: 'ion-ios-calendar',
                     order: 502,
-                },
-            })
-    .state('schedule.addSchedule',
-            {
-                url: '/addSchedule',
-                templateUrl: 'app/pages/schedule/addSchedule/addSchedule.html',
-                controller: 'addScheduleCtrl',
-                controllerAs:'vm',
-                title: 'Add Schedule',
-                sidebarMeta: {
-                    order: 200,
                 },
             });
     }
