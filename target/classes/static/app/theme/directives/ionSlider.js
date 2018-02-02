@@ -12,7 +12,7 @@
     function ionSlider($timeout) {
         return {
             restrict: 'EA',
-            require : '^ngModel',
+            require: '^ngModel',
             template: '<div></div>',
             replace: true,
             scope: {
@@ -79,7 +79,7 @@
                         max_interval: $scope.maxinterval,
                         drag_interval: true,
                         disable: $scope.disable,
-                        onChange: function (){
+                        onChange: function () {
                             console.log($scope);
                             $scope.onchange();
                         }(),
@@ -87,7 +87,7 @@
                         values: $scope.values,
                         prettify: me
 
-                    // $scope.onChange,
+                        // $scope.onChange,
                     });
                 })();
 

@@ -1,38 +1,28 @@
 package com.gc.automation.gccontroller.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "units")
 public class Unit {
-    private String id;
-    private String name;
-    private ArrayList<Channel> channels;
+    @Id
+    @Column(name = "unit_id")
+    private
+    String id;
 
-    @Autowired
-    DataSource dataSource;
+    @Column(name = "unit_name")
+    private
+    String name;
 
-    //New Units
-    Unit(String id, String name, ArrayList<Channel> channels) {
-        this.setId(id);
-        this.setName(name);
-        this.setChannels(channels);
-    }
+    @Column(name = "channel_size")
+    private
+    String channelSize;
 
-    //Load Unit From DB
-    Unit(String id) {
-        this.setId(id);
-    }
-
-    void saveToDB() throws SQLException {
-        Connection con = dataSource.getConnection();
-        Statement statement = con.createStatement();
-        statement.execute("");
-    }
 
     public String getId() {
         return id;
@@ -50,11 +40,21 @@ public class Unit {
         this.name = name;
     }
 
-    public ArrayList<Channel> getChannels() {
-        return channels;
+    public String getChannelSize() {
+        return channelSize;
     }
 
-    public void setChannels(ArrayList<Channel> channels) {
-        this.channels = channels;
+    public void setChannelSize(String channelSize) {
+        this.channelSize = channelSize;
+    }
+
+    @Override
+
+    public String toString() {
+
+        return "Unit [id=" + id + ", unitName=" + name
+
+                + ", channelSize=" + channelSize + "]";
+
     }
 }
