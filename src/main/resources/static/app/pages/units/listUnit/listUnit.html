@@ -10,7 +10,7 @@
 
                         <th ng-class="align-left">Unit Name</th>
                         <th ng-class="align-left">Channel size</th>
-                        <th ng-class="align-left">Sensor size</th>
+                        <!--<th ng-class="align-left">Sensor size</th>-->
 
                     </tr>
                     </thead>
@@ -18,8 +18,8 @@
                     <tr ng-repeat="item in vm.unitList" class="no-top-border" ng-click="vm.setClickedRow($event,item)">
 
                         <td ng-class="align-left">{{item.name}}</td>
-                        <td ng-class="align-left">{{vm.sizeof(item.channels)}}</td>
-                        <td ng-class="align-left">{{vm.sizeof(item.sensors)}}</td>
+                        <td ng-class="align-left">{{item.channelSize}}</td>
+                        <!--<td ng-class="align-left"></td>-->
 
 
                     </tr>

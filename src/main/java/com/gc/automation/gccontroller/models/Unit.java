@@ -19,7 +19,7 @@ public class Unit {
     private
     String name;
 
-    @Column(name = "channel_size")
+    @Column(name = "unit_channel_size")
     private
     String channelSize;
 
@@ -52,7 +52,7 @@ public class Unit {
 
     public String toString() {
 
-        return "Unit [id=" + id + ", unitName=" + name
+        return "Unit [id=" + id + ", name=" + name
 
                 + ", channelSize=" + channelSize + "]";
 

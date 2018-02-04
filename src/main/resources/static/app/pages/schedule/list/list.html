@@ -6,7 +6,7 @@
                 <tr class="black-muted-bg">
 
                     <th ng-class="align-left">Schedule Name</th>
-                    <th ng-class="align-left">Days</th>
+                    <th ng-class="align-left">Schedule</th>
                     <th ng-class="align-left">Channels</th>
 
                 </tr>
@@ -14,9 +14,9 @@
                 <tbody>
                 <tr ng-repeat="item in vm.schedules" class="no-top-border" ng-click="vm.setClickedRow($event,item)">
 
-                    <td ng-class="align-left">{{item.ScheduleName}}</td>
-                    <td ng-class="align-left">{{vm.listDays(item.Schedule)}}</td>
-                    <td ng-class="align-left">{{vm.listDevices(item.devices)}}</td>
+                    <td ng-class="align-left">{{item.schedule_name}}</td>
+                    <td ng-class="align-left">{{vm.scheduleText(item.cronCommand)}}</td>
+                    <!--<td ng-class="align-left">{{vm.listDevices(item.devices)}}</td>-->
 
 
                 </tr>

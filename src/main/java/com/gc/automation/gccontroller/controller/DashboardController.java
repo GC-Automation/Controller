@@ -1,7 +1,13 @@
 package com.gc.automation.gccontroller.controller;
 
+import com.gc.automation.gccontroller.models.Unit;
+import com.gc.automation.gccontroller.newUnits;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.xml.ws.Response;
 
 @Controller
 public class DashboardController {
@@ -25,5 +31,12 @@ public class DashboardController {
 
         return "reg";
     }
+//@RequestMapping(value = "/newunits",method = RequestMethod.GET)
+//    public void listnewUnits(){
+//
+//    newUnits.start();
+//
+//}
+
 
 }

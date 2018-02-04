@@ -14,77 +14,34 @@
         .controller('listScheduleCtrl', listScheduleCtrl);
 
     /** @ngInject */
-    function listScheduleCtrl($scope, $mdDialog) {
+    function listScheduleCtrl($scope, $http, $mdDialog) {
         var vm = this;
         $scope.theme = 'blur';
-        vm.schedules = [
-            {
-                ScheduleName: 'Schedule1',
-                Schedule:
-                    [
-                        {Id: 'Mo', Name: 'Monday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'Tu', Name: 'Tuesday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'We', Name: 'Wednesday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Th', Name: 'Thursday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Fr', Name: 'Friday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Sa', Name: 'Saturday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Su', Name: 'Sunday', Value: false, From: '57600', To: '64800'}
-                    ],
-                devices: [{"id": "sol1-1", "name": "Algeria", "unit": "Algeria"}]
-            },
-            {
-                ScheduleName: 'Schedule2',
-                Schedule:
-                    [
-                        {Id: 'Mo', Name: 'Monday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'Tu', Name: 'Tuesday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'We', Name: 'Wednesday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Th', Name: 'Thursday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Fr', Name: 'Friday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'Sa', Name: 'Saturday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'Su', Name: 'Sunday', Value: false, From: '57600', To: '64800'}
-                    ],
-                devices: [{"id": "sol2-2", "name": "Brazil", "unit": "Algeria2"}, {
-                    "id": "sol2-3",
-                    "name": "Cameroon",
-                    "unit": "Algeria2"
-                }]
-            },
-            {
-                ScheduleName: 'Schedule3',
-                Schedule:
-                    [
-                        {Id: 'Mo', Name: 'Monday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'Tu', Name: 'Tuesday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'We', Name: 'Wednesday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Th', Name: 'Thursday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Fr', Name: 'Friday', Value: true, From: '57600', To: '64800'},
-                        {Id: 'Sa', Name: 'Saturday', Value: false, From: '57600', To: '64800'},
-                        {Id: 'Su', Name: 'Sunday', Value: true, From: '57600', To: '64800'}
-                    ],
-                devices: []
-            }
 
-        ];
+        function loadSchedules() {
+            console.log("Running");
+            $http.get('/schedules')
+                .then(function (data) {
 
-        vm.listDays = function (schedule) {
-            var value = '';
-            angular.forEach(schedule, function (aSchedule) {
-                if (aSchedule.Value === true) {
-                    value += aSchedule.Name + ',';
-                }
-            });
-            return value.slice(0, -1);
-        };
-        vm.listDevices = function (devices) {
-            var value = '';
-            angular.forEach(devices, function (aDevices) {
+                    if (data.data._embedded != undefined) {
 
-                value += aDevices.name + ',';
+                        vm.schedules = data.data._embedded.schedules;
+                    }
+                    else {
+                        console.log("Undefined")
+                        vm.schedules = [];
+                    }
+                });
 
-            });
-            return value.slice(0, -1);
-        };
+        }
+
+        loadSchedules();
+
+        vm.scheduleText = function (cron) {
+            return prettycron.toString(cron);
+        }
+
+
         vm.setClickedRow = function (ev, _index) {  //function that sets the value of selectedRow to current index
             console.log(_index);
             $mdDialog.show({

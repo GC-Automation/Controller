@@ -5,61 +5,51 @@
         .controller('listUnitCtrl', listUnitCtrl);
 
     /** @ngInject */
-    function listUnitCtrl($scope) {
+    function listUnitCtrl($scope, $http) {
         var vm = this;
         console.log("Loaded ListUnits Ctrl");
         vm.sizeof = function (item) {
             return item.length;
         };
-        vm.unitList = [
-            {
-                id: 'chr1',
-                name: 'Garden',
-                channels: [
-                    {
-                        id: 'chr1-1',
-                        name: 'GardenChnl',
-                        state: 'on'
+
+        function loadUnits() {
+            console.log("Running");
+            $http.get('/units')
+                .then(function (data) {
+
+                    if (data.data._embedded != undefined) {
+
+                        vm.unitList = data.data._embedded.units;
                     }
-                ],
-                sensors: []
-            },
-            {
-                id: 'chr2',
-                name: 'Garden',
-                channels: [
-                    {
-                        id: 'chr2-1',
-                        name: 'GardenChnl2',
-                        state: 'off'
-                    },
-                    {
-                        id: 'chr2-2',
-                        name: 'GardenChnl2',
-                        state: 'on'
+                    else {
+                        console.log("Undefined")
+                        vm.unitList = [];
                     }
-                ]
-                ,
-                sensors: []
-            }
-        ];
-
-        vm.channelsList = function () {
-            var channel = [];
-
-            angular.forEach(vm.unitList, function (unit) {
-
-                angular.forEach(unit.channels, function (channels) {
-
-                    channel.push(channels)
-
                 });
 
-            });
-            console.log("Channel Print:");
-            console.log(channel);
-            return channel;
         }
+
+        loadUnits();
+
+        // vm.unitList ;
+
+        function loadChannels() {
+            console.log("Running");
+            $http.get('/channels')
+                .then(function (data) {
+                    if (data.data._embedded != undefined) {
+                        vm.channelsList = data.data._embedded.channels;
+                    }
+                    else {
+                        console.log("Undefined")
+                        vm.channelsList = [];
+                    }
+                });
+
+        }
+
+        loadChannels();
+
 
         vm.setClickedRow = function (ev, index) {  //function that sets the value of selectedRow to current index
 
